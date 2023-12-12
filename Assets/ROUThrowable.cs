@@ -52,7 +52,7 @@ public class ROUThrowable : MonoBehaviour
         timeRolling += Time.deltaTime;
         timeSinceLastProjection += Time.deltaTime;
 
-        if (timeBetweenProjections <= timeSinceLastProjection)
+        if (timeSinceLastProjection >= timeBetweenProjections)
         {
             CreateProjection();
             timeSinceLastProjection = 0;

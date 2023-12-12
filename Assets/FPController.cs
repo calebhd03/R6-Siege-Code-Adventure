@@ -43,6 +43,8 @@ public class FPController : MonoBehaviour
     private void OnEnable()
     {
         controls.Player.Enable();
+        controls.Player.Move.canceled += _ => movementInput = Vector2.zero;
+        controls.Player.Look.canceled += _ => lookInput = Vector2.zero;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -57,6 +59,8 @@ public class FPController : MonoBehaviour
         //Move();
         //Look();
 
+        Debug.Log("movemtn input = " + movementInput);
+
         MovePlayer();
         RotateCamera();
     }
@@ -70,8 +74,6 @@ public class FPController : MonoBehaviour
 
     private void MovePlayer()
     {
-        Debug.Log("Move input " + movementInput);
-
         Vector3 moveDirection = new Vector3(movementInput.x, 0f, movementInput.y);
         Debug.Log("Move Direction " + moveDirection);
         moveDirection = transform.TransformDirection(moveDirection);
